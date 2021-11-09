@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Send Query Param</title>
+</head>
+<body>
+<form>
+    <label for="search">Search:
+        <input type="text" id="search" name="search">
+    </label>
+    <br>
+    <input type="button" id="searchButton" value="Search">
+</form>
+<h1 id="response"></h1>
+<script>
+
+    function doSearch() {
+        const ajax = new XMLHttpRequest();
+
+        const param = new URLSearchParams();
+        param.append("search", document.getElementById("search").value);
+        param.append("filter", document.getElementById("search").value);
+
+        ajax.open("GET", `https://hookb.in/r19B7Kmn3PSqk2XXkwqb?${param.toString()}`);
+        ajax.onload = function () {
+            const response = document.getElementById("response");
+            response.innerText = ajax.responseText;
+        }
+
+        ajax.send();
+    }
+
+    document.getElementById("searchButton").onclick = doSearch;
+
+</script>
+</body>
+</html>

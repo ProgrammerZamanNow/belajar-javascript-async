@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Async</title>
+</head>
+<body>
+<script>
+
+    // Promise<String>
+    function getNamePromise() {
+        return new Promise(function (resolve, reject) {
+            resolve("Eko Promise");
+        });
+    }
+
+    // Promise<String>
+    async function getNameAsync(){
+        return "Eko Async";
+    }
+
+    getNamePromise()
+        .then((name) => console.info(name));
+
+    getNameAsync()
+        .then((name) => console.info(name));
+
+</script>
+</body>
+</html>

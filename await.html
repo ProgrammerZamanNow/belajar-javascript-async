@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Await</title>
+</head>
+<body>
+<script>
+
+    // Promise<JSON Product>
+    function getProduct() {
+        const request = new Request("api/productsalah.json", {
+            method: "GET"
+        });
+
+        const response = fetch(request);
+
+        return response.then((response) => response.json());
+    }
+
+    // Promise<String ProductName>
+    function getProductNamePromise() {
+        return new Promise(function (resolve, reject) {
+            getProduct()
+                .then((product) => resolve(product.name))
+                .catch((error) => resolve("Product Not Found"));
+        })
+    }
+
+    async function getProductNameAsync() {
+        try {
+            const product = await getProduct();
+            return product.name;
+        } catch (e) {
+            return "Product Not Found";
+        } finally {
+
+        }
+    }
+
+    getProductNamePromise()
+        .then((productName) => console.info(productName));
+
+    getProductNameAsync()
+        .then((productName) => console.info(productName));
+
+</script>
+</body>
+</html>

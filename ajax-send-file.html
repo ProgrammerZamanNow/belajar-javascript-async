@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Send File</title>
+</head>
+<body>
+<h1>Register</h1>
+<form>
+    <label for="username">Username:
+        <input type="text" id="username" name="username">
+    </label>
+    <br>
+    <label for="name">Name:
+        <input type="text" id="name" name="name">
+    </label>
+    <br>
+    <label for="profile">Profile:
+        <input type="file" id="profile" name="profile">
+    </label>
+    <br>
+    <input type="button" id="register" value="Register">
+</form>
+<h1 id="response"></h1>
+<script>
+
+    function doLogin() {
+        const ajax = new XMLHttpRequest();
+        ajax.open("POST", "https://hookb.in/r19B7Kmn3PSqk2XXkwqb");
+        ajax.onload = function () {
+            const response = document.getElementById("response");
+            response.innerText = ajax.responseText;
+        }
+
+        const form = new FormData();
+        form.append("username", document.getElementById("username").value);
+        form.append("name", document.getElementById("name").value);
+
+        const files = document.getElementById("profile").files;
+        const firstFile = files.item(0);
+
+        form.append("profile", firstFile);
+
+        ajax.send(form);
+    }
+
+    document.getElementById("register").onclick = doLogin;
+
+</script>
+</body>
+</html>
